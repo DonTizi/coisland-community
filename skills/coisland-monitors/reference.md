@@ -40,7 +40,8 @@ line as its value, never on two lines.
 - A prose comment in the header is kept as a note. A note shaped like a setting (`-- todo: x`) reads as
   an unknown key and shows a warning, so write notes without a colon after the first word.
 - A key given twice: the last one wins, with a warning.
-- Errors that stop a monitor, exactly as CoIsland prints them:
+- Errors that stop a monitor, exactly as CoIsland prints them (`--check --json` gives each as
+  `result: invalid`, with this `message` and the `line`):
 
 | In the file | CoIsland says |
 |---|---|

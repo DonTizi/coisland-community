@@ -33,9 +33,15 @@ The command line: `/Applications/CoIsland.app/Contents/MacOS/CoIsland`. Call it 
 /Applications/CoIsland.app/Contents/MacOS/CoIsland --alerts --open --json
 ```
 
-`--open` keeps the alerts still open (new or acknowledged); without it, resolved ones come too. Each
-alert carries its id, its monitor, when it was detected, its status, the rows or items that fired,
-and its notes.
+`--open` keeps the alerts still open (new or acknowledged); without it, resolved ones come too. It
+prints `{"alerts": [...]}`, newest first, each with:
+
+- `id`; `status`: `new`, `acknowledged` or `resolved`; `raised`: when it fired (ISO 8601, UTC);
+- `monitor` (its name), `monitorFile`, `kind` and `connector`;
+- `title` (`1 new run in Failed deploys`), `summary` (the rule) and `observed` (`1 new run`);
+- `rows`: what fired, each a `title` and its `fields` (column to value; a URL, when there is one, is
+  a field);
+- `notes`: each a `date` and its `text`.
 
 Summarise **by monitor**, newest first:
 
@@ -63,7 +69,8 @@ them at hand to act.
 - Find the id by matching the owner's words ("the alert about the checkout deploy") against the
   monitor names and fired rows from `--alerts --open --json`. When two alerts match, ask which.
 - For "it's noise", resolve it and add a short note saying why, in the owner's words.
-- Add `--json` to read the result field by field.
+- Add `--json` to read the result: `{"ok": true, "appliedBy": "app" or "file", "alert": {...}}`, the
+  alert as `--alerts` shows it after the change, or `{"ok": false, "error": "..."}`.
 
 Exit codes, and what to tell the owner:
 
@@ -72,9 +79,10 @@ Exit codes, and what to tell the owner:
   home) or an error. Report its message.
 - **2:** the running app got the request but did not confirm in time. It may still apply it. Do not
   retry blindly: run `--alerts --json` after a few seconds and check the alert's status.
-- **64:** the command was wrong, or CoIsland is older than this skill: ask the owner to update it.
+- **64:** the command was wrong (a malformed id, a note with no text), or CoIsland is older than this
+  skill: ask the owner to update it.
 
-Setting the status an alert already has, or an empty note, changes nothing.
+Setting the status an alert already has changes nothing.
 
 ## Investigate, then note
 

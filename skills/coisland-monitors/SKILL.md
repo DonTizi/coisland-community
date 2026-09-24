@@ -43,7 +43,8 @@ the app's command line. It was written for CoIsland 0.3.0, the first version wit
 /Applications/CoIsland.app/Contents/MacOS/CoIsland --connectors --json
 ```
 
-It lists each connector's provider, name and whether it is its provider's default, never a secret.
+It prints `{"connectors": [...]}`, each with `name`, `provider` and `default` (true for its
+provider's default), never a secret.
 A monitor names its connector with `-- connector: <name>`; without that line it runs on the default
 connector of its provider.
 
@@ -94,16 +95,23 @@ connector of its provider.
 /Applications/CoIsland.app/Contents/MacOS/CoIsland --check /Users/<you>/.coisland/watches/failed-deploys.sql
 ```
 
-Use the file's absolute path. Add `--json` when you want to read the result field by field. Report
-what it printed, in its words, with the exit code:
+Use the file's absolute path. With `--json` it prints `ok` (true only when every file passed) and
+`results`, one per file, each with `file`, `name`, `kind`, `connector` and a `result`:
 
-- **0:** the file parsed and the check ran. Say how many rows or items match now, if it says.
-- **1:** the check failed. If the message is about the file (an invalid value, an unknown filter, a
-  refused query such as `Unknown filter "label:"`), fix the file and check again, at most twice, then
-  ask the owner. If it is about the connector or the service (no token saved, token refused, not
-  allowed, not found, rate limited, network), the file may be right: tell the owner what to fix in
-  the app or in that service, and do not change the file.
-- **64:** the command was wrong, or the app is too old (see step 1).
+- **`ok`:** the file parsed and the check ran. `matching` is how many rows or items match now;
+  report any `warnings`.
+- **`invalid`:** the file is wrong. `message` says why and `line` where (a bad value, an unknown
+  filter such as `Unknown filter "label:"`, a refused query). Fix the file and check again, at most
+  twice, then ask the owner.
+- **`connector-missing`:** no connector for it. Open the `addConnector` link with `open`, and ask the
+  owner to add the connector there (step 1).
+- **`could-not-run`:** the file parsed, but the check could not run. `category` says why:
+  `auth` (no token saved, or refused), `permission`, `not-found`, `rate-limited`, `timeout`,
+  `network`, `configuration`, `server` or `other`. The file may be right: report `message`, tell the
+  owner what to fix in the app or that service, and do not change the file.
+
+Exit codes: **0** every file is `ok`; **1** at least one is not; **64** the command was wrong, or the
+app is too old (see step 1).
 
 A new or edited file is also checked by the running app within a second. Running every file:
 `/Applications/CoIsland.app/Contents/MacOS/CoIsland --check` with no path.
