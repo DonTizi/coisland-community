@@ -1,0 +1,43 @@
+name: Connector request
+description: Ask CoIsland to watch a tool it does not connect to yet, or more of one it does.
+title: "[Connector]: "
+labels: ["connector"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CoIsland connects to Snowflake, GitHub, Jira, Vercel, Linear, Sentry, PagerDuty, Gmail, Confluence, Calendar and Databricks. Tell us what else you want in the notch. **Never paste a token or password here.**
+  - type: input
+    id: tool
+    attributes:
+      label: Tool or service
+      placeholder: Datadog, GitLab, BigQuery...
+    validations:
+      required: true
+  - type: textarea
+    id: watch
+    attributes:
+      label: What should CoIsland watch?
+      description: The events that should become an alert, as concretely as you can.
+      placeholder: A monitor that goes into Alert state; a merge request waiting for my review.
+    validations:
+      required: true
+  - type: textarea
+    id: today
+    attributes:
+      label: How do you find out today?
+      description: Email, Slack, checking the site by hand... and what is wrong with it.
+  - type: dropdown
+    id: hosting
+    attributes:
+      label: Where does it run?
+      options:
+        - Cloud (the vendor hosts it)
+        - Self-hosted
+        - Both
+        - Not sure
+  - type: input
+    id: docs
+    attributes:
+      label: API documentation
+      description: A link to the tool's API docs, if you know it.

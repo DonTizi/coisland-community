@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue
+    url: mailto:hello@coisland.app
+    about: Report a security problem privately by email, not in a public issue.
+  - name: Licence and purchase questions
+    url: mailto:hello@coisland.app
+    about: Questions about your licence, a purchase or a refund.
+  - name: Documentation
+    url: https://coisland.app/docs/
+    about: How to connect each tool, write watch files and use the agent skills.

@@ -1,0 +1,74 @@
+name: Bug report
+description: Something in CoIsland does not work as it should.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. **Never paste a token, password, API key or app password here**, not even an expired one. Replace them with `<token>` in anything you copy.
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: Apple menu › About This Mac.
+      placeholder: macOS 15.7
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CoIsland version
+      description: Settings › About in CoIsland.
+      placeholder: "0.3.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: connector
+    attributes:
+      label: Connector
+      description: The connector involved, if any.
+      options:
+        - None, or the app itself
+        - Snowflake
+        - GitHub
+        - Jira
+        - Vercel
+        - Linear
+        - Sentry
+        - PagerDuty
+        - Gmail
+        - Confluence
+        - Calendar
+        - Databricks
+        - The agent skills (coisland-monitors, coisland-alerts)
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Exact error
+      description: The message as CoIsland shows it, copied word for word. For a monitor, you can paste its watch file from ~/.coisland/watches (it holds no secrets, but check your query for values you would not share).
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Settings › Monitors
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Screenshots, how often it happens, what changed recently. Hide tokens, emails and data you would not share.

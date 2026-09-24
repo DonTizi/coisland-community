@@ -1,0 +1,24 @@
+name: Idea
+description: Suggest an improvement to CoIsland or its agent skills.
+title: "[Idea]: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What CoIsland could do about it.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CoIsland version
+      description: Settings › About in CoIsland, if you have it installed.
