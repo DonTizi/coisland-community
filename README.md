@@ -30,7 +30,20 @@ The skills need CoIsland 0.3.0 or later, installed in `/Applications`.
 
 ### Install
 
-One line, for every agent it finds on your Mac:
+The simplest way: paste this into your AI (Claude Code, Codex, Cortex Code or any other agent), and
+it installs the skills and sets CoIsland up with you.
+
+```text
+Install the CoIsland skills from https://github.com/DonTizi/coisland-community, following its README: run curl -fsSL https://raw.githubusercontent.com/DonTizi/coisland-community/main/install.sh | sh, or copy its skills folder into your own skills folder.
+Then check that coisland-monitors and coisland-alerts are installed, and tell me.
+Skills load when a session starts, so read the installed coisland-monitors SKILL.md and its reference.md now, and follow them for the rest of this session.
+Then list my CoIsland connectors with /Applications/CoIsland.app/Contents/MacOS/CoIsland --connectors.
+Then ask me what I want to watch, and create my first monitors as that skill says, checking each one.
+Never ask for or handle a token. If a connector is missing, open its form in CoIsland with open "coisland://connectors/add?provider=<id>" and wait for me to add it.
+If you cannot run commands, tell me the commands to run.
+```
+
+Or from the terminal, one line, for every agent it finds on your Mac:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/DonTizi/coisland-community/main/install.sh | sh
