@@ -17,8 +17,10 @@ the app's command line. It was written for CoIsland 0.3.0, the first version wit
 ## Where things are
 
 - The command line: `/Applications/CoIsland.app/Contents/MacOS/CoIsland`. Call it by that full path.
-- The watches folder: `~/.coisland/watches/`, or `$COISLAND_HOME/watches/` when `COISLAND_HOME` is set
-  (`printenv COISLAND_HOME` tells). Only visible `.sql` files at the top of the folder count.
+- The watches folder, below `<watches>`: run `printenv COISLAND_HOME` first. If it prints a folder,
+  the watches are in its `watches` subfolder, directly (`$COISLAND_HOME/watches/`, no `.coisland`).
+  Otherwise they are in `~/.coisland/watches/`. Only visible `.sql` files at the top of that folder
+  count; a file anywhere else is never checked.
 - Every kind, key, filter and limit, with a complete example per kind: [reference.md](reference.md).
   Read the section of the connector you need before writing a file.
 
@@ -92,11 +94,12 @@ connector of its provider.
 ## 3. Check it: one command, then report
 
 ```
-/Applications/CoIsland.app/Contents/MacOS/CoIsland --check /Users/<you>/.coisland/watches/failed-deploys.sql
+/Applications/CoIsland.app/Contents/MacOS/CoIsland --check <watches>/failed-deploys.sql
 ```
 
-Use the file's absolute path. With `--json` it prints `ok` (true only when every file passed) and
-`results`, one per file, each with `file`, `name`, `kind`, `connector` and a `result`:
+Use the file's absolute path (`<watches>` spelled out). With `--json` it prints `ok` (true only when
+every file passed) and `results`, one per file, each with `file`, `name`, `kind`, `connector` and a
+`result`:
 
 - **`ok`:** the file parsed and the check ran. `matching` is how many rows or items match now;
   report any `warnings`.
@@ -131,13 +134,13 @@ A new or edited file is also checked by the running app within a second. Running
   does, never `rm`:
 
   ```
-  trash /Users/<you>/.coisland/watches/failed-deploys.sql
+  trash <watches>/failed-deploys.sql
   ```
 
 ## Examples
 
 "Watch my failed GitHub Actions runs on acme/api": `--connectors --json` shows one GitHub connector,
-`acme_github`. Write `~/.coisland/watches/failed-github-actions-runs.sql`:
+`acme_github`. Write `<watches>/failed-github-actions-runs.sql`:
 
 ```sql
 -- name: Failed GitHub Actions runs

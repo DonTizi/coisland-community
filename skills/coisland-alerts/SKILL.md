@@ -69,8 +69,10 @@ them at hand to act.
 - Find the id by matching the owner's words ("the alert about the checkout deploy") against the
   monitor names and fired rows from `--alerts --open --json`. When two alerts match, ask which.
 - For "it's noise", resolve it and add a short note saying why, in the owner's words.
-- Add `--json` to read the result: `{"ok": true, "appliedBy": "app" or "file", "alert": {...}}`, the
-  alert as `--alerts` shows it after the change, or `{"ok": false, "error": "..."}`.
+- Add `--json` to read the result: `{"ok": true, "appliedBy": ..., "alert": {...}}`, the alert as
+  `--alerts` shows it after the change, or `{"ok": false, "error": "..."}`. `appliedBy` is `app` (the
+  running app applied it) or `file` (no app runs on this home, so the command wrote it safely, and the
+  app shows it at its next launch). Both are done; neither needs a retry.
 
 Exit codes, and what to tell the owner:
 
