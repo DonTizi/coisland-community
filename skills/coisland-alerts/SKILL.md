@@ -16,6 +16,21 @@ written for CoIsland 0.3.0, the first version with `--alerts`.
 
 The command line: `/Applications/CoIsland.app/Contents/MacOS/CoIsland`. Call it by that full path.
 
+## 0. Check the CoIsland version first
+
+Before any CoIsland command, run this once:
+
+```sh
+defaults read /Applications/CoIsland.app/Contents/Info CFBundleShortVersionString
+```
+
+It prints a version such as `0.3.0`. The commands below need **0.3.0 or later**. On an older
+version, or when it prints an error (CoIsland is not in /Applications), stop and tell the owner to
+update CoIsland (menu bar icon › Check for Updates, or https://coisland.app/download) and to
+install it in Applications, not run it from the disk image. Never run the CoIsland binary on an
+older version: before 0.3.0 it does not know these commands and starts a second copy of the app
+that never answers.
+
 ## Rules
 
 1. **Only the command line.** Never read or edit `alerts.json` or anything else under
