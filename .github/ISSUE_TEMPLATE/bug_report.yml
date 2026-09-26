@@ -20,7 +20,7 @@ body:
     attributes:
       label: CoIsland version
       description: Settings › About in CoIsland.
-      placeholder: "0.3.0"
+      placeholder: "0.4.5"
     validations:
       required: true
   - type: dropdown
@@ -30,18 +30,44 @@ body:
       description: The connector involved, if any.
       options:
         - None, or the app itself
-        - Snowflake
-        - GitHub
-        - Jira
-        - Vercel
-        - Linear
-        - Sentry
-        - PagerDuty
-        - Gmail
-        - Confluence
+        - Airtable
+        - Apple Mail
+        - Asana
         - Calendar
+        - ClickHouse
+        - ClickUp
+        - Cloudflare
+        - Confluence
         - Databricks
-        - The agent skills (coisland-monitors, coisland-alerts)
+        - Datadog
+        - dbt
+        - Dock badges
+        - GitHub
+        - GitLab
+        - Gmail
+        - "HTTP / JSON"
+        - Jira
+        - Langfuse
+        - Linear
+        - MySQL
+        - New Relic
+        - Notion
+        - PagerDuty
+        - PostgreSQL
+        - PostHog
+        - Reminders
+        - Render
+        - "RSS / Atom"
+        - Sentry
+        - Shell command
+        - Shortcut
+        - Snowflake
+        - Status pages
+        - Stripe
+        - Supabase
+        - Todoist
+        - Vercel
+        - The agent skills
     validations:
       required: true
   - type: textarea
