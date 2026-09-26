@@ -8,14 +8,15 @@ here.
 
 ## Use CoIsland from your AI
 
-Two skills, in the open `SKILL.md` format, let the AI you already use set CoIsland up and triage what
+Three skills, in the open `SKILL.md` format, let the AI you already use set CoIsland up and triage what
 it raises:
 
 - **`coisland-monitors`** creates, checks, edits, pauses and deletes monitors: the plain `.sql` watch
-  files in `~/.coisland/watches`, for all 11 connectors (Snowflake, GitHub, Jira, Vercel, Linear,
-  Sentry, PagerDuty, Gmail, Confluence, Calendar, Databricks).
+  files in `~/.coisland/watches`, for every connector CoIsland has.
 - **`coisland-alerts`** reads your open alerts, summarises them by monitor, and acknowledges,
   resolves, reopens or notes them.
+- **`coisland-support`** reads CoIsland's diagnostic report, explains what it says, and files a
+  bug here with it, only after you have read the issue and said yes.
 
 Ask it things like:
 
@@ -25,8 +26,9 @@ Ask it things like:
 - "List my CoIsland monitors, and pause the big orders one."
 - "What fired overnight?"
 - "Resolve the alert about the checkout deploy, it's noise."
+- "My Jira monitor keeps failing: report it to CoIsland."
 
-The skills need CoIsland 0.3.0 or later, installed in `/Applications`.
+The skills need CoIsland 0.3.0 or later (0.4.6 for `coisland-support`), installed in `/Applications`.
 
 ### Install
 
@@ -35,7 +37,7 @@ it installs the skills and sets CoIsland up with you.
 
 ```text
 Install the CoIsland skills from https://github.com/DonTizi/coisland-community, following its README: run curl -fsSL https://raw.githubusercontent.com/DonTizi/coisland-community/main/install.sh | sh, or copy its skills folder into your own skills folder.
-Then check that coisland-monitors and coisland-alerts are installed, and tell me.
+Then check that coisland-monitors, coisland-alerts and coisland-support are installed, and tell me.
 Skills load when a session starts, so read the installed coisland-monitors SKILL.md and its reference.md now, and follow them for the rest of this session.
 Then list my CoIsland connectors with /Applications/CoIsland.app/Contents/MacOS/CoIsland --connectors.
 Then ask me what I want to watch, and create my first monitors as that skill says, checking each one.
